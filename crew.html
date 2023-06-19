@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="">
+    <link href="b.css" rel="stylesheet" >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>Assignment</title>
+
+</head>
+<body >
+   
+<div id="main" style="background-color:lightblue;padding-left: 50px;margin-top: 10px;padding-top: 20px;margin-bottom: 50px;padding-bottom: 20px">
+    <div>
+        <h1>Crew Assignment Calculator</h1><br/>            
+    </div>
+    <div>
+        <select id="problemType" hidden>
+            <option value="min" selected="selected" >Minimization</option>
+            <option value="max" hidden>Maximization</option>
+        </select><br/><br/>
+
+        <label>Sector:</label>&nbsp;&nbsp;&nbsp;
+    <!-- <input type="text" value="Bengaluru" required id="flight1"> -->
+    <label id="flight1">Bengaluru</label>&nbsp;&nbsp;&nbsp;
+    <select id="sector">
+        <option value="Mumbai" selected>Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        </select><br><br>
+
+    <label>Enter the number of flights:</label>
+    <input type="number" id="flight"><br>
+    <input type="button" id =  "display_matrix" value = "Generate" />
+
+</div>
+<div id="dataMatrix">
+   
+</div><br/>
+<div id="resultBtn" style="display: none;">
+    <input type="button" id="getResult" value="Generate Result" />
+</div>
+    <div id="result">
+
+    </div><br><br>
+    <div id="result1">
+
+    </div><br><br>
+    <div id="result2">
+
+    </div><br><br>
+    <div id="result3">
+
+    </div><br><br>
+    <div id="doAnother" style="display: none;text-align: center;">
+        <input type="button" id="anotherQue" value="Solve Another Question" />
+        <button id="Home" class="button1"><a href="front.html" style="text-decoration: none;color: aliceblue;">Home</a></button>
+       
+    </div>
+
+   <script>
+    $(document).ready(function() {
+                 $("#display_matrix").click(function(){
+
+                    rows=parseInt($("#flight").val());
+                    cols=6;
+                   
+                    var sector1="Bangalore";
+                    console.log(sector1);
+                    var sector = $("#sector").val();
+                    console.log(sector);
+
+                    var k=0;
+                    var genTable;
+                    if(sector=="Mumbai"){
+                    genTable="<table id='table1'>";
+                    $("#dataMatrix").html(genTable);
+                    for (var i = 0; i < (rows+1); i++) {
+                        genTable='<tr id=\"row'+i+'\"></tr>';
+                        $("#dataMatrix").append(genTable);
+                        for (var j = 0; j < (cols); j++) {
+                             if(i==0 && j==0) {
+                                genTable='<td id = "Blr_flight">Flight#</td>';
+                            }else if(i==0 && j==1) {
+                                genTable='<td id = "Blr_dep">'+sector1+' Departure</td>';
+                            }else if(i==0 && j==2) {
+                                genTable='<td id = "Del_arr">'+sector+' Arrival</td>';
+                            }else if(i==0 && j==3) {
+                                genTable='<td id = "Del_flight">Flight#</td>';
+                            }else if(i==0 && j==4) {
+                                genTable='<td id = "Del_dep">'+sector+' Departure</td>';
+                            }else if(i==0  && j==5) {
+                                genTable='<td id = "Blr_arr">'+sector1+ ' Arrival</td>';
+                            }else if(i==1 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E488"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "10:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "12:05"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5211"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "08:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==1 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "10:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==2 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5293"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "12:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "14:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5212"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "09:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==2 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "11:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5351"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "14:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "16:10"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5382"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "12:10"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==3 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "13:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5251"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "16:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "18:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5294"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "15:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==4 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "16:35"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5255"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "18:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "19:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5221"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "16:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==5 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "18:40"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5376"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "19:25"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "21:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5252"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "18:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==6 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "20:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5283"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "21:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "23:25"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5256"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "20:35"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==7 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "22:25"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5204"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "23:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "00:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E6571"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "23:10"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==8 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "00:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+
+                            else if(i==9 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5323"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "08:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "10:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5296"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "07:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==9 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "08:35"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+
+                            else if(i==10 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5284"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==10 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "00:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==10 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "02:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==10 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5295"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==10 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "04:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==10 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "06:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+
+                            else if(i==11 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5352"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==11 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "06:05"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==11 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "07:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==11 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5207"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==11 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "07:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==11 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "09:10"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+
+
+                            else if(i==12 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5356"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==12 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "02:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==12 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "03:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==12 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E6589"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==12 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "03:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==12 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "05:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+
+
+
+                            else if(j==1 ||j ==2 ||j == 4 || j==5){
+                                genTable = '<td id=\"col'+k+'\"><input class=\"inTable\" type=\"time\"  id=\"data'+k+'\"required></td>';
+                                k++;
+                            }
+                            else {
+                                genTable='<td id=\"col'+k+'\"><input type=\"text\" value = "6E" id=\"data'+k+'\"></input></td>';
+               
+                                k++;
+                            }
+                           
+                            $("#row"+i).append(genTable);
+                        }
+                       
+                    }
+                    genTable="</table>"
+                }
+
+
+                //Table for Delhi to bangalore data which should be printed
+                else{
+                    genTable="<table id='table1'>";
+                    $("#dataMatrix").html(genTable);
+                    for (var i = 0; i < (rows+1); i++) {
+                        genTable='<tr id=\"row'+i+'\"></tr>';
+                        $("#dataMatrix").append(genTable);
+                        for (var j = 0; j < (cols); j++) {
+                             if(i==0 && j==0) {
+                                genTable='<td id = "Blr_flight">Flight#</td>';
+                            }else if(i==0 && j==1) {
+                                genTable='<td id = "Blr_dep">'+sector1+' Departure</td>';
+                            }else if(i==0 && j==2) {
+                                genTable='<td id = "Del_arr">'+sector+' Arrival</td>';
+                            }else if(i==0 && j==3) {
+                                genTable='<td id = "Del_flight">Flight#</td>';
+                            }else if(i==0 && j==4) {
+                                genTable='<td id = "Del_dep">'+sector+' Departure</td>';
+                            }else if(i==0  && j==5) {
+                                genTable='<td id = "Blr_arr">'+sector1+ ' Arrival</td>';
+                            }else if(i==1 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E735"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "19:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "22:10"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5088"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==1 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "13:05"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==1 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "15:55"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2402"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "20:40"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "23:35"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2131"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==2 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "21:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==2 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "00:35"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E6813"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "22:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "01:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E6612"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==3 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "05:55"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==3 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "08:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2053"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "23:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "02:10"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2403"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==4 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "07:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==4 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "09:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5021"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "05:35"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "08:25"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5608"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==5 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "09:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==5 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "12:05"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E6621"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "15:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "18:35"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2434"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==6 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "10:40"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==6 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "13:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E869"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "12:00"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "14:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2515"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==7 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "20:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==7 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "23:25"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2401"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "13:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "16:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E2067"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==8 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "04:20"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==8 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "07:15"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+
+                            else if(i==9 && j==0){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E5039"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==1){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "16:50"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==2){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "19:45"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==3){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"text\" value = "6E781"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+                            else if(i==9 && j==4){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "15:40"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }else if(i==9 && j==5){
+                                genTable = '<td id=\"col'+k+'\"><input  type=\"time\" value = "18:30"  id=\"data'+k+'\"></input></td>';
+                                k++;
+                            }
+
+
+
+
+
+
+                            else if(j==1 ||j ==2 ||j == 4 || j==5){
+                                genTable = '<td id=\"col'+k+'\"><input class=\"inTable\" type=\"time\"  id=\"data'+k+'\"required></td>';
+                                k++;
+                            }
+                            else {
+                                genTable='<td id=\"col'+k+'\"><input type=\"text\" value = "6E" id=\"data'+k+'\"></input></td>';
+               
+                                k++;
+                            }
+                           
+                            $("#row"+i).append(genTable);
+                        }
+                       
+                    }
+                    genTable="</table>"
+               
+                }
+                    $("#dataMatrix").append(genTable);
+                    $("#resultBtn").css("display","inline-block");  
+
+                });
+                $("#getResult").click(function(){
+                    cntModified=1;
+                    data = new Array(cols);
+                    for (var i = 0;i< rows;i++){
+                        data[i] = new Array(rows);
+                       
+                    }
+                    var k=0;
+                    for (var i = 0; i < rows; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            data[i][j]=$("#data"+k).val();
+                            k++;
+                        }
+                       
+                    }
+                    originalData=new Array(rows);
+                    for (var i = 0; i < rows; i++) {
+                        originalData[i] = new Array(rows);
+                    }
+
+                    for (var i = 0; i < rows; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            originalData[i][j]=data[i][j];
+                        }
+                       
+                    }
+                    $("#result").html("<br/><b>Given input is :</b> <br/><br/>");
+
+                    var table='<table id="table2">';
+                        $("#result").append(table);
+                    for (var i = 0; i < rows; i++) {
+                        table='<tr id=\"row2'+i+'\"></tr>';
+                        $("#result").append(table);
+                        for (var j = 0; j < cols; j++) {
+                            var printValue;
+                           
+                                table='<td>' + data[i][j]+ '</td>';
+                           
+                                                   
+                            $("#row2"+i).append(table);
+                        }
+                    }
+                    table='</table>';
+                    $("#result").append(table);
+
+                    type=$("#problemType").val();
+                    //Row data calculated              
+                    fdata =  Array(rows);
+                    for (var i = 0;i< rows+1;i++){
+                        fdata[i] = new Array(rows);
+                    }
+                    var m = 0;
+                    for(var i =0;i<rows+1;i++)
+                    {
+                        for(var j =0;j<cols;j++){
+                            if(j==0  ){
+                                fdata[i][j]= $("#data"+m).val();
+                                console.log(fdata[i][j]);
+                               
+                            }m++;
+                        }
+                    }
+                   
+                    OriginalData=new Array(rows);
+                    for (var i = 0; i < rows+1; i++) {
+                        OriginalData[i] = new Array(rows);
+                    }
+
+                    for (var i = 0; i < rows+1; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            OriginalData[i][j]=fdata[i][j];
+                        }
+                       
+                    }
+                   
+                    //row data calculated
+
+                    var f =0
+                    flight1data = new Array();
+                    for(var i=0;i<rows;i++){
+                        for(var j =0;j<cols;j++){
+                            if(j==0){
+                                flight1data.push($("#data"+f).val());
+                            }
+                            f++;
+                        }
+                    }  
+                console.log(flight1data);
+
+                var g =0
+                    flight2data = new Array();
+                    for(var i=0;i<rows;i++){
+                        for(var j =0;j<cols;j++){
+                            if(j==3){
+                                flight2data.push($("#data"+g).val());
+                            }
+                            g++;
+                        }
+                    }  
+                console.log(flight2data);
+
+                    //cdata storing
+                    cdata =  Array(rows);
+                    for (var i = 0;i< rows+1;i++){
+                        cdata[i] = new Array(rows);
+                    }
+                    var m = 0;
+                    for(var i =0;i<rows+1;i++)
+                    {
+                       
+                        for(var j =0;j<cols;j++){
+                            if( j==3 ){
+                                cdata[i][j]= $("#data"+m).val();
+                               
+                            }m++;
+                        }
+                    }
+                   
+                    oData=new Array(rows);
+                    for (var i = 0; i < rows+1; i++) {
+                        oData[i] = new Array(rows);
+                    }
+
+                    for (var i = 0; i < rows+1; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            oData[i][j]=cdata[i][j];
+                        }
+                       
+                    }
+                    // Column data completed
+
+
+                    //time data calculating
+
+                    t1data =  Array(rows);
+                    for (var i = 0;i< rows+1;i++){
+                        t1data[i] = new Array(rows);
+                    }
+                    var m = 0;
+                    for(var i =0;i<rows+1;i++)
+                    {
+                       
+                        for(var j =0;j<cols;j++){
+                            if( j==2 ||j==4 ){
+                                t1data[i][j]= $("#data"+m).val();
+                               
+                            }m++;
+                        }
+                    }
+                    tData=new Array(rows);
+                    for (var i = 0; i < rows+1; i++) {
+                        tData[i] = new Array(rows);
+                    }
+
+                    for (var i = 0; i < rows+1; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            tData[i][j]=t1data[i][j];
+                        }
+                       
+                    }
+                   
+                    // time retrieving
+                    var findarray = new Array();
+                   
+                    for(var i =0;i<rows;i++){
+                        for(var j =0;j<cols;j++){
+                            if(j==2){
+                                var splitted1 = (t1data[i][j]).split(":");
+                               
+                                for(var k=0;k<rows;k++){
+                                    for(var l=0;l<cols;l++){
+                                        if(l==4){
+                                         
+                                            var splitted2 = (t1data[k][l]).split(":");
+                                            var time1 = parseInt(splitted1[0])*60+parseInt(splitted1[1]);
+                                            var time2 = parseInt(splitted2[0])*60+parseInt(splitted2[1]);
+                                            if(time2<time1){
+                                                var tidi = (time2-time1)+1440;
+                                                if(tidi<300){
+                                                    tidi = tidi+1440;
+                                                }
+                                                findarray.push(tidi);
+                                            }else{
+                                            var tidi = time2-time1;
+                                            if(tidi<300){
+                                                    tidi = tidi+1440;
+                                                }
+                                            findarray.push(tidi);
+                                            }
+                                           
+                                           } } } } } }
+                               
+                                var n = new Array();
+                                var i = 0;
+                                for (l = findarray.length + 1; (i + rows) < l; i += rows) {
+                                n.push(findarray.slice(i, i + rows));
+                                }
+                               
+
+
+                           
+                    //t1 data calclted
+
+                    $("#result1").html("<br/><br/><b>Crew Based in Bangalore :</b><br/></b><br/><br> ");
+                    var table='<table id="table3">';
+                   
+                    $("#result1").append(table);
+                    for (var i = 0; i <= (rows); i++) {
+                        table='<tr id=\"row3'+i+'\"></tr>';
+                        $("#result1").append(table);
+                        for (var j = 0; j <( rows+1); j++) {
+                            if(i==0 && j==0){
+                                table ='<td>Flight No</td>'
+                            }else if(i>0 && j==0 ) {
+                                    table = '<td>'+fdata[i-1][j]+'</td>';
+                               
+                            }else if( i==0 && j>0 ){
+                                table='<td>'+cdata[j-1][i+3]+'</td>';
+                            }
+                            else {
+                                    table = '<td>'+n[i-1][j-1]+'</td>';
+                                   
+                                }      
+                            $("#row3"+i).append(table);
+                        }
+                    }
+                                   
+                    table='</table>';
+                   
+
+                    //Crew based in Delhi
+                    t2data =  Array(rows);
+                    for (var i = 0;i< rows+1;i++){
+                        t2data[i] = new Array(rows);
+                    }
+                    var m = 0;
+                    for(var i =0;i<rows+1;i++)
+                    {
+                       
+                        for(var j =0;j<cols;j++){
+                            if( j==5 ||j==1 ){
+                                t2data[i][j]= $("#data"+m).val();
+                               
+                            }m++;
+                        }
+                    }
+                    tdData=new Array(rows);
+                    for (var i = 0; i < rows+1; i++) {
+                        tdData[i] = new Array(rows);
+                    }
+
+                    for (var i = 0; i < rows+1; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            tdData[i][j]=t2data[i][j];
+                        }
+                       
+                    }
+                   
+                    // time retrieving
+                    var findarray = new Array();
+                   
+                    for(var i =0;i<rows;i++){
+                        for(var j =0;j<cols;j++){
+                            if(j==5){
+                                var splitted1 = (t2data[i][j]).split(":");
+                               
+                                for(var k=0;k<rows;k++){
+                                    for(var l=0;l<cols;l++){
+                                        if(l==1){
+                                         
+                                            var splitted2 = (t2data[k][l]).split(":");
+                                            var time1 = parseInt(splitted1[0])*60+parseInt(splitted1[1]);
+                                            var time2 = parseInt(splitted2[0])*60+parseInt(splitted2[1]);
+                                            if(time2<time1){
+                                                var tidi = (time2-time1)+1440;
+                                                if(tidi<300){
+                                                    tidi = tidi+1440;
+                                                }
+                                                findarray.push(tidi);
+                                            }else{
+                                            var tidi = time2-time1;
+                                            if(tidi<300){
+                                                    tidi = tidi+1440;
+                                                }
+                                            findarray.push(tidi);
+                                            }
+                                           
+                                           } } } } } }
+                               
+                                var m = new Array();
+                                var i = 0;
+                                for (l = findarray.length + 1; (i + rows) < l; i += rows) {
+                                m.push(findarray.slice(i, i + rows));
+                                }
+                                       
+                    //t1 data calclted
+                    var sector = $("#sector").val();
+                    console.log(sector);
+                    $("#result").append('<br/><br/><b>Crew Based in '+sector+ ':</b><br/><br><br> ');
+                    var table='<table id="table4">';
+                   
+                    $("#result").append(table);
+                    for (var i = 0; i <= (rows); i++) {
+                        table='<tr id=\"row3'+i+'\"></tr>';
+                        $("#result").append(table);
+                        for (var j = 0; j <( rows+1); j++) {
+                            if(i==0 && j==0){
+                                table ='<td>Flight No</td>'
+                            }else if(i>0 && j==0 ) {
+                                    table = '<td>'+fdata[i-1][j]+'</td>';
+                               
+                            }else if( i==0 && j>0 ){
+                                table='<td>'+cdata[j-1][i+3]+'</td>';
+                            }
+                            else {
+                                    table = '<td>'+m[j-1][i-1]+'</td>';
+                                   
+                                }      
+                            $("#row3"+i).append(table);
+                        }
+                    }
+                                   
+                    table='</table>';
+//*
+var asteriskarray = new Array();
+                    for(var i =0;i<rows;i++){
+                        for(var j =0;j<rows;j++){
+                            if(n[i][j]<m[j][i]){
+                                asteriskarray.push("*"+n[i][j]);
+
+                            }
+                            else{
+                                asteriskarray.push(m[j][i]);
+                            }
+                        }
+                    }
+                    var final345 = new Array();
+                                var i = 0;
+                                for (l = asteriskarray.length + 1; (i + rows) < l; i += rows) {
+                                final345.push(asteriskarray.slice(i, i + rows));
+                                }
+                                var final456 = new Array(rows);
+                                for(var k =0;k<rows;k++){
+                                    final456[k] = new Array(rows);
+                                }
+                                for(var i =0;i<rows;i++){
+                                    for(var j =0;j<rows;j++){
+                                        final456[i][j] = final345[i][j];
+                                    }
+                                }
+                    //
+                    //comparison
+                    var comparearray = new Array();
+
+                    for(var i =0;i<rows;i++){
+                        for(var j =0;j<rows;j++){
+                            if(n[i][j]<m[j][i]){
+                                comparearray.push(n[i][j]);
+
+                            }
+                            else{
+                                comparearray.push(m[j][i]);
+                            }
+                        }
+                    }
+                    var final = new Array();
+                                var i = 0;
+                                for (l = comparearray.length + 1; (i + rows) < l; i += rows) {
+                                final.push(comparearray.slice(i, i + rows));
+                                }
+                                var final1 = new Array(rows);
+                                for(var k =0;k<rows;k++){
+                                    final1[k] = new Array(rows);
+                                }
+                                for(var i =0;i<rows;i++){
+                                    for(var j =0;j<rows;j++){
+                                        final1[i][j] = final[i][j];
+                                    }
+                                }
+                               
+                               
+                    $("#result2").html("<br><br><br/><br/><b>Layover in Mins:</b><br/> ");
+                    $('#result2').append('<br/></br></br>* Represents crew based in Bangalore</p></br><br>');
+                    var table='<table id="table5">';
+                   
+                    $("#result2").append(table);
+                    for (var i = 0; i <= (rows); i++) {
+                        table='<tr id=\"row5'+i+'\"></tr>';
+                        $("#result2").append(table);
+                        for (var j = 0; j <( rows+1); j++) {
+                            if(i==0 && j==0){
+                                table ='<td>Flight No</td>'
+                            }else if(i>0 && j==0 ) {
+                                    table = '<td>'+fdata[i-1][j]+'</td>';
+                               
+                            }else if( i==0 && j>0 ){
+                                table='<td>'+cdata[j-1][i+3]+'</td>';
+                            }
+                            else {
+                                    table = '<td>'+final345[i-1][j-1]+'</td>';
+                                   
+                                }      
+                            $("#row5"+i).append(table);
+                        }
+                    }
+                   
+                    var block = parseInt($("#flight").val());;
+                    var minRow=Array(block);
+                    var minCol=Array(block);
+
+                    minRow.fill(1000);
+                    minCol.fill(1000);          
+
+                    for (var i = 0; i < block; i++) {
+                        for (var j = 0; j < block; j++) {
+                            var a=parseInt(minRow[i]);
+                            var b=parseInt(final[i][j]);
+                            if(a > b) {
+                                minRow[i]=final[i][j];
+                            }
+                        }
+                    }
+
+                    for (var i = 0; i < block; i++) {
+                        for (var j = 0; j < block; j++) {
+                            final[i][j]=final[i][j]-minRow[i];
+                        }
+                    }
+
+                    $("#result2").append("<br/><br/><b>Step 1 :</b><br/>Identify the minimum element in each row and subtract it from every element of that row. The result is shown in the following table.<br/><br/>");
+
+                    var table='<table id="table7">';
+                   
+                    $("#result2").append(table);
+                    for (var i = 0; i < block; i++) {
+                        table='<tr id=\"row7'+i+'\"></tr>';
+                        $("#result2").append(table);
+                        for (var j = 0; j < block; j++) {
+                            var printValue;
+                            if(final[i][j]>10000) {
+                                printValue="-";
+                                table='<td>'+printValue+'</td>';
+                            }else {
+                                table='<td>'+final[i][j]+'</td>';
+                            }          
+                            $("#row7"+i).append(table);
+                        }
+                    }
+                    table = '</table>';
+
+
+                    for (var i = 0; i < block; i++) {
+                        for (var j = 0; j < block; j++) {
+                            var a=parseInt(minCol[i]);
+                            var b=parseInt(final[j][i]);
+                            if(a > b) {
+                                minCol[i]=final[j][i];
+                            }
+                        }
+                    }
+
+
+                    for (var i = 0; i < block; i++) {
+                        for (var j = 0; j < block; j++) {
+                            final[j][i]=final[j][i]-minCol[i];
+                        }
+                    }
+
+                    $("#result2").append("<br/><br/><b>Step 2 :</b><br/>Identify the minimum element in each column and subtract it from every element of that column. The result is shown in the following table.<br/><br/>");
+
+                    var table='<table id="table8">';
+                   
+                    $("#result2").append(table);
+                    for (var i = 0; i < block; i++) {
+                        table='<tr id=\"row8'+i+'\"></tr>';
+                        $("#result2").append(table);
+                        for (var j = 0; j < block; j++) {
+                            var printValue;
+                            if(final[i][j]>10000) {
+                                printValue="-";
+                                table='<td>'+printValue+'</td>';
+                            }else {
+                                table='<td>'+final[i][j]+'</td>';
+                            }          
+                            $("#row8"+i).append(table);
+                        }
+                    }
+                    table='</table>';
+
+                    $("#result2").append('<br/><br/><b>Step 3 :</b><br/>Make the assignments for the reduced matrix obtained from steps 1 and 2 in the following way:<br/><br/>a. For each row or column with a single zero value cell that has not be assigned or eliminated, box   that zero value as an assigned cell.<br/><br/>b. For every zero that becomes assigned, cross out (X) all other zeros in the same row and the same column.<br/><br/>c. If for a row and a column, there are two or more zeros and one cannot be chosen by inspection, choose the cell arbitrarily for assignment.<br/><br/>d. The above process may be continued until every zero cell is either assigned or crossed (X).<br/><br/>');
+                    assignmentTable=new Array(block);
+                    for (var i = 0; i < block; i++) {
+                        assignmentTable[i] = new Array(block);
+                    }
+                    function calAssignmentTable() {
+                        for (var i = 0; i < block; i++) {
+                            for (var j = 0; j < block; j++) {
+                                assignmentTable[i][j]=0;
+                                console.log(assignmentTable[i][j]);
+                            }
+                        }
+                       
+
+                        restrictPosition=new Array(block);
+                        for (var i = 0; i < block; i++) {
+                            restrictPosition[i] = new Array(block);
+                        }
+
+                        for (var i = 0; i < block; i++) {
+                            for (var j = 0; j < block; j++) {
+                                restrictPosition[i][j]=0;
+                            }
+                        }
+
+                        for (var i = 0; i < block; i++) {
+                            for (var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])>1000) {
+                                    restrictPosition[i][j]=1;
+                                    console.log(restrictPosition[i][j]);
+                                }
+                            }
+                        }
+                        cntZero=new Array(block);
+                        cntZeroCol=new Array(block);
+                        cntZero.fill(0);
+                        cntZeroCol.fill(0);
+
+                        for (var i = 0; i < block; i++) {
+                            for (var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    cntZero[i]++;
+                                }
+                            }
+                        }//alert(cntZero);
+
+                        for (var i = 0; i < block; i++) {
+                            for (var j = 0; j < block; j++) {
+                                if(parseInt(final[j][i])==0) {
+                                    cntZeroCol[i]++;
+                                }
+                            }
+                        }
+                        //alert(cntZeroCol);
+                        var rowF=new Array(block);
+                        var colF=new Array(block);
+                        rowF.fill(0);
+                        colF.fill(0);
+
+                        for(var i = 0; i < block; i++) {
+                            for(var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    if(parseInt(rowF[i])==0 && parseInt(colF[j])==0) {
+                                        //alert(cntZero[i]);
+                                        if(parseInt(cntZero[i])==1) {
+                                            assignmentTable[i][j]=1;
+                                            rowF[i]=-1;
+                                            colF[j]=-1;
+                                            cntZero[i]=0;
+                                            cntZeroCol[j]=0;
+                                            for (var k = i; k < block; k++) {
+                                                if(parseInt(final[k][j])==0) {
+                                                    if(parseInt(cntZero[k])!=0) {
+                                                        cntZero[k]--;
+                                                    }                                                  
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        for(var i = 0; i < block; i++) {
+                            for(var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    if(parseInt(rowF[i])==0 && parseInt(colF[j])==0) {
+                                        if(parseInt(cntZero[i])==2) {
+                                            if(parseInt(cntZeroCol[j])==1) {
+                                                assignmentTable[i][j]=1;
+                                                rowF[i]=-1;
+                                                colF[j]=-1;
+                                                cntZero[i]=0;
+                                                cntZeroCol[j]=0;
+                                                for (var k = 0; k < block; k++) {
+                                                    if(parseInt(final[k][j]==0)) {
+                                                        if(parseInt(cntZero[k])!=0) {
+                                                            cntZero[k]--;
+                                                        }                                                  
+                                                    }
+                                                }
+                                            }  
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        for(var i = 0; i < block; i++) {
+                            for(var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    if(parseInt(rowF[i])==0 && parseInt(colF[j])==0) {
+                                        if(parseInt(cntZero[i])==2) {
+                                            if(parseInt(cntZeroCol[j])==2) {
+                                                assignmentTable[i][j]=1;
+                                                rowF[i]=-1;
+                                                colF[j]=-1;
+                                                cntZero[i]=0;
+                                                cntZeroCol[j]=0;
+                                                for (var k = 0; k < block; k++) {
+                                                    if(parseInt(final[k][j]==0)) {
+                                                        if(parseInt(cntZero[k])!=0) {
+                                                            cntZero[k]--;
+                                                        }                                                  
+                                                    }
+                                                }
+                                            }  
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        for(var i = 0; i < block; i++) {
+                            for(var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    if(parseInt(rowF[i])==0 && parseInt(colF[j])==0) {
+                                        if(parseInt(cntZero[i])==2) {
+                                            if(parseInt(cntZeroCol[j])>=2) {
+                                                assignmentTable[i][j]=1;
+                                                rowF[i]=-1;
+                                                colF[j]=-1;
+                                                cntZero[i]=0;
+                                                cntZeroCol[j]=0;
+                                                for (var k = 0; k < block; k++) {
+                                                    if(parseInt(final[k][j]==0)) {
+                                                        if(parseInt(cntZero[k])!=0) {
+                                                            cntZero[k]--;
+                                                        }                                                  
+                                                    }
+                                                }
+                                            }  
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        for(var i = 0; i < block; i++) {
+                            for(var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    if(parseInt(rowF[i])==0 && parseInt(colF[j])==0) {
+                                        if(parseInt(cntZero[i])>=2) {
+                                            if(parseInt(cntZeroCol[j])==1) {
+                                                assignmentTable[i][j]=1;
+                                                rowF[i]=-1;
+                                                colF[j]=-1;
+                                                cntZero[i]=0;
+                                                cntZeroCol[j]=0;
+                                                for (var k = 0; k < block; k++) {
+                                                    if(parseInt(final[k][j]==0)) {
+                                                        if(parseInt(cntZero[k])!=0) {
+                                                            cntZero[k]--;
+                                                        }                                                  
+                                                    }
+                                                }
+                                            }                                          
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        for(var i = 0; i < block; i++) {
+                            for(var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    if(parseInt(rowF[i])==0 && parseInt(colF[j])==0) {
+                                        if(parseInt(cntZero[i])>=2) {
+                                            if(parseInt(cntZeroCol[j])==2) {
+                                                assignmentTable[i][j]=1;
+                                                rowF[i]=-1;
+                                                colF[j]=-1;
+                                                cntZero[i]=0;
+                                                cntZeroCol[j]=0;
+                                                for (var k = 0; k < block; k++) {
+                                                    if(parseInt(final[k][j]==0)) {
+                                                        if(parseInt(cntZero[k])!=0) {
+                                                            cntZero[k]--;
+                                                        }                                                  
+                                                    }
+                                                }
+                                            }                                          
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+
+                        for(var i = 0; i < block; i++) {
+                            for(var j = 0; j < block; j++) {
+                                if(parseInt(final[i][j])==0) {
+                                    if(parseInt(rowF[i])==0 && parseInt(colF[j])==0) {
+                                        if(parseInt(cntZero[i])>=2) {
+                                            if(parseInt(cntZeroCol[j])>=2) {
+                                                assignmentTable[i][j]=1;
+                                                rowF[i]=-1;
+                                                colF[j]=-1;
+                                                cntZero[i]=0;
+                                                cntZeroCol[j]=0;
+                                                for (var k = 0; k < block; k++) {
+                                                    if(parseInt(final[k][j]==0)) {
+                                                        if(parseInt(cntZero[k])!=0) {
+                                                            cntZero[k]--;
+                                                        }                                                  
+                                                    }
+                                                }
+                                            }                                          
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+
+                        cntAlloc=0;
+                        for (var i = 0; i < block; i++) {
+                            for (var j = 0; j < block; j++) {
+                                if(parseInt(assignmentTable[i][j])==1) {
+                                    cntAlloc++;
+                                }
+                            }
+                        }
+                    }
+                       
+
+                   
+               
+                    calAssignmentTable();  
+                   
+                    while(true) {
+                        if(cntAlloc==block) {
+                            $("#result2").append("<br/><br/><b>Assignment Matrix (Optimum) :</b><br/><br/>");
+
+                            var table='<table id="asiignmentTable">';
+                           
+                            $("#result2").append(table);
+                            for (var i = 0; i < block; i++) {
+                                table='<tr id=\"rowA'+i+'\"></tr>';
+                                $("#result2").append(table);
+                                for (var j = 0; j < block; j++) {
+                                    if(parseInt(restrictPosition[i][j])==1) {
+                                        table='<td>-</td>';
+                                    }else {
+                                        table='<td>'+assignmentTable[i][j]+'</td>';
+                                    }                                  
+                                    $("#rowA"+i).append(table);
+                                }
+                            }
+                            table='</table>';
+                            $("#result2").append(table);
+
+                            lastData = new Array();
+                            for(var i =0;i<block;i++){
+                                for(var j =0;j<block;j++){
+                                    if(assignmentTable[i][j]==1){
+                                    lastData.push(flight1data[i]);
+                                    lastData.push(flight2data[j]);
+                                    lastData.push(final1[i][j]);
+                                }
+                            }
+                            }
+                            console.log(lastData);
+                            var lastData1 = new Array();
+                                var i = 0;
+                                for (var l = 0; i<lastData.length; i += 3) {
+                                lastData1.push(lastData.slice(i, i + 3));
+                                }
+                                console.log(lastData1);
+
+                            $("#result3").append("<br/><br/><b>Assignment Matrix (Optimum) :</b><br/><br/>");
+
+                            var table='<table id="assignment1Table">';
+                           
+                            $("#result3").append(table);
+                            for (var i = 0; i < (block+1); i++) {
+                                table='<tr id=\"rowA2'+i+'\"></tr>';
+                                $("#result3").append(table);
+                                for (var j = 0; j < 3; j++) {
+                                    if(i==0 && j==0){
+                                        table= '<th>Flight# for Arrival</th>';
+                                    }else if(i==0 && j==1){
+                                        table= '<th> Flight# for Departure</th>';
+                                    }else if(i==0 && j==2){
+                                        table= '<th> Layover Time in mins</th>';
+                                    }else{
+                                   
+                                        table='<td>'+lastData1[i-1][j]+'</td>';
+                                    }                              
+                                    $("#rowA2"+i).append(table);
+                                }
+                            }
+                            table='</table>';
+                            $("#result3").append(table);
+
+                            var ans=0;
+
+                            for (var i = 0; i < block; i++) {
+                                for (var j = 0; j < block; j++) {
+                                    if(parseInt(assignmentTable[i][j])==1) {
+                                        ans=ans+parseInt(final1[i][j]);
+                                    }
+                                }
+                            }
+                            var hours=Math.floor(ans/60);
+                            var minutes = ans%60;
+                            var hours1 = hours+minutes;
+                            
+
+                            if(type=="max") {
+                                $("#result3").append("<br/><br/><label class='result' style='font-weight: bolder;'>Profit (Maximum) : </label>"+ans);
+                            }else {
+                                $("#result3").append("<br/><br/><label class='result' style='font-weight: bolder;'>Total Layover time in hrs : </label>"+(hours)+" hour "+minutes+" minutes");
+                            }
+                            /*for(var i =0;i<rows;i++){
+                                for(var j =0;j<rows;j++){
+                                    if(assignmentTable[i][j]==1){
+                                        $("#result2").append("<br/><br/>"+fdata[i][j])
+                                    }
+                                }
+                            }*/
+                           
+
+                            $("#doAnother").css("display","inline-block");                      
+
+                            cntModified=1;
+                            break;
+                        }else {
+
+                            var markedRows=new Array(block);
+                            var markedCols=new Array(block);
+
+                            markedRows.fill(-1);
+                            markedCols.fill(-1);
+
+                            outer :
+                            for (var i = 0; i < block; i++) {
+                                for (var j = 0; j < block; j++) {
+                                    if(parseInt(assignmentTable[i][j])==1) {
+                                        markedRows[i]=-1;
+                                        continue outer;
+                                    }else {
+                                        markedRows[i]=i;
+                                    }
+                                }
+                            }
+                           
+                            for (var i = 0; i < block; i++) {
+                                for (var j = 0; j < block; j++) {
+                                    var x = parseInt(markedRows[i]);
+                                    if(x==-1) {
+                                    }else {
+                                        if(parseInt(final[x][j])==0) {
+                                            markedCols[j]=j;
+                                        }
+                                    }
+                                }
+                            }                          
+
+                            for (var i = 0; i < block; i++) {
+                                for (var j = 0; j < block; j++) {
+                                    var x = parseInt(markedCols[i]);
+                                    if(x==-1) {
+                                    }else {
+                                        if(parseInt(assignmentTable[j][x])==1) {
+                                            markedRows[j]=j;
+                                        }
+                                    }
+                                }
+                            }      
+
+                            var coveredRows=new Array(block);
+                            var coveredCols=new Array(block);
+
+                            coveredRows.fill(0);
+                            coveredCols.fill(0);
+
+                            for (var i = 0; i < block; i++) {
+                                if(parseInt(markedRows[i])==-1) {
+                                    coveredRows[i]=1;
+                                }
+                                if(parseInt(markedCols[i])!=-1) {
+                                    coveredCols[i]=1;
+                                }
+                            }
+
+                            var cntTable=1;
+                            var smallUncover=1000;
+
+                            outer2 :
+                            for (var i = 0; i < block; i++) {
+                                for (var j = 0; j < block; j++) {
+                                    if(parseInt(coveredRows[i])!=1 && parseInt(coveredCols[j])!=1) {
+                                        if(smallUncover>final[i][j]) {
+                                            smallUncover=final[i][j];
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (var i = 0; i < block; i++) {
+                                for (var j = 0; j < block; j++) {
+                                    if(parseInt(coveredRows[i])==1 && parseInt(coveredCols[j])==1) {
+                                        //alert("in 1");
+                                        final[i][j]=final[i][j]+smallUncover;
+                                    }else if(parseInt(coveredRows[i])==0 && parseInt(coveredCols[j])==0) {
+                                        //alert("in 2");
+                                        final[i][j]=final[i][j]-smallUncover;
+                                    }
+                                }
+                            }
+
+                            calAssignmentTable();
+                           
+                            var id;
+                            id='rowM'+cntModified;
+                            $("#result2").append('<br/><br/><b>Modified Matrix '+cntModified+':</b><br/><br/>');
+
+                            var table='<table id=\"modifiedTable'+cntModified+'\">';
+                           
+                            $("#result2").append(table);
+                            for (var i = 0; i < block; i++) {
+                                table='<tr id=\"'+id+i+'\"></tr>';
+                                $("#result2").append(table);
+                                for (var j = 0; j < block; j++) {
+                                   
+                                        table='<td>'+final[i][j]+'</td>';
+                                               
+                                    $("#"+id+i).append(table);
+                                }
+                            }
+                            table='</table>';
+                            $("#result2").append(table);
+
+                            cntModified++;                          
+                        }
+
+                    }
+                    $("#anotherQue").click(function() {
+                    location.reload();
+                });
+                
+                                 
+                });
+            });
+           
+   </script>
+   </div>
+</body>
+</html>
